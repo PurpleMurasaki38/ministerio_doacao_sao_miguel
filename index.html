@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Evangélico - Lista de Caridades</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000; /* Fundo preto */
+            color: #fff; /* Texto branco */
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #111;
+            text-align: center;
+            padding: 1rem;
+            border-bottom: 2px solid #fff;
+        }
+        nav {
+            background-color: #222;
+            padding: 0.5rem;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        main {
+            padding: 1rem;
+            max-width: 900px;
+            margin: auto;
+            background-color: #111;
+            box-shadow: 0 0 5px rgba(255,255,255,0.2);
+        }
+        h2 {
+            border-bottom: 1px solid #fff;
+            padding-bottom: 5px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #222;
+            margin: 5px 0;
+            padding: 10px;
+            border-left: 5px solid #fff;
+        }
+        footer {
+            background-color: #111;
+            color: white;
+            text-align: center;
+            padding: 0.5rem;
+            margin-top: 1rem;
+            border-top: 2px solid #fff;
+        }
+        form {
+            background-color: #222;
+            padding: 1rem;
+            margin-top: 1rem;
+            border: 1px solid #fff;
+        }
+        form input, form button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #000;
+            border: 1px solid #fff;
+            color: white;
+        }
+        form button {
+            cursor: pointer;
+            background-color: #fff;
+            color: #000;
+            font-weight: bold;
+        }
+        form button:hover {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Ministério Doação De São Miguel</h1>
+        <p>"Ajudando o próximo como Jesus nos ensinou"</p>
+   <div class="music-player">
+            <h3>Música de Fundo</h3>
+            <audio id="audioPlayer" controls autoplay loop>
+                <!-- Substitua o link abaixo pelo link ou arquivo da música -->
+                <source src="musica.mp3" type="audio/mpeg">
+                Seu navegador não suporta áudio.
+            </audio>
+        </div>
+    </header>
+    <main>
+        <section id="sobre">
+            <h2>Sobre o Ministério</h2>
+            <p>O Ministério Doação De Miguel Esperança é uma iniciativa cristã dedicada a ajudar famílias, 
+               crianças e comunidades em necessidade através de ações sociais, arrecadações e apoio espiritual.</p>
+        </section>
+            <!-- Formulário para adicionar novas caridades -->
+            <form id="formCaridade">
+                <h3>Cadastrar Nova Caridade</h3>
+                <input type="text" id="nomeCaridade" placeholder="Nome da Caridade" required>
+                <input type="text" id="descricaoCaridade" placeholder="Descrição da Caridade" required>
+                <button type="submit">Adicionar</button>
+            </form>
+        </section>
+
+        <section id="Deus E A Resposta! Ligue pro 188 caso precise de ajuda psicologica contra o suicidio.">
+            <h2>Contato</h2>
+            <p>
+</section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Ministério São Miguel e Esperança. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        const form = document.getElementById('formCaridade');
+        const lista = document.getElementById('listaCaridades');
+
+        // Carrega as caridades do localStorage ao iniciar
+        window.onload = function() {
+            const caridadesSalvas = JSON.parse(localStorage.getItem('caridades')) || [];
+            caridadesSalvas.forEach(caridade => {
+                adicionarCaridadeNaLista(caridade.nome, caridade.descricao);
+            });
+        };
+
+        // Evento ao enviar o formulário
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const nome = document.getElementById('nomeCaridade').value;
+            const descricao = document.getElementById('descricaoCaridade').value;
+
+            adicionarCaridadeNaLista(nome, descricao);
+            salvarCaridade(nome, descricao);
+
+            form.reset();
+        });
+
+        // Função para adicionar no HTML
+        function adicionarCaridadeNaLista(nome, descricao) {
+            const li = document.createElement('li');
+            li.innerHTML = `<strong>${nome}</strong> - ${descricao}`;
+            lista.appendChild(li);
+        }
+
+        // Função para salvar no localStorage
+        function salvarCaridade(nome, descricao) {
+            const caridadesSalvas = JSON.parse(localStorage.getItem('caridades')) || [];
+            caridadesSalvas.push({ nome, descricao });
+            localStorage.setItem('caridades', JSON.stringify(caridadesSalvas));
+        }
+    </script>
+
+</body>
+</html>
