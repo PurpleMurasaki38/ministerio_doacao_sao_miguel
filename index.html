@@ -8,8 +8,8 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #000; /* Fundo preto */
-            color: #fff; /* Texto branco */
+            background-color: #000;
+            color: #fff;
             margin: 0;
             padding: 0;
         }
@@ -85,102 +85,92 @@
 </head>
 <body>
 
-    <header>
-        <h1>Ministério Doação De São Miguel</h1>
-        <p>"Ajudando o próximo como Jesus nos ensinou"</p>
-   <div class="music-player">
-            <h3>Música de Fundo</h3>
-            <audio id="audioPlayer" controls autoplay loop>
-                <!-- Substitua o link abaixo pelo link ou arquivo da música -->
-                <source src="musica.mp3" type="audio/mpeg">
-                Seu navegador não suporta áudio.
-            </audio>
-        </div>
-    </header>
-    <main>
-        <section id="sobre">
-            <h2>Sobre o Ministério</h2>
-            <p>O Ministério Doação De Miguel Esperança é uma iniciativa cristã dedicada a ajudar famílias, 
-               crianças e comunidades em necessidade através de ações sociais, arrecadações e apoio espiritual.</p>
-              <h3>Seguintes sites de doações:</h3>
-             <p>
-               https://fundacaoaya.com/?gad_source=1&gad_campaignid=22595216379&gclid=CjwKCAjwkbzEBhAVEiwA4V-yqiN005TJPSIZN85bIRQJiis8P6xmkRVvmziNBUGPt6kxE8TO7vH4lBoCwH4QAvD_BwE
-             </p>
-            <h3>Pagina 2</h3>
-            <p>https://portasabertas.org.br/</p>
-            <h3>Pagina 3</h3>
-            <p>https://amide.org.br/</p>
-            <h3>Pagina 4</h3>
-            <p>https://www.petlife.com.br/para-empresas</p>
-            <h3>Pagina 5</h3>
-            <p>https://www.petcoletivo.com.br/</p>
-            <h3>Pagina 6</h3>
-            <p>https://www.adotepetz.com.br/</p>
-            <h3>Pagina 7</h3>
-            <p>https://vetex.vet.br/projeto-pet-doador/</p>
-        </section>
-            <!-- Formulário para adicionar novas caridades -->
-            <form id="formCaridade">
-                <h3>Cadastrar Nova Caridade</h3>
-                <input type="text" id="nomeCaridade" placeholder="Nome da Caridade" required>
-                <input type="text" id="descricaoCaridade" placeholder="Descrição da Caridade" required>
-                <button type="submit">Adicionar</button>
-            </form>
-        </section>
+<header>
+    <h1>Ministério Doação De São Miguel</h1>
+    <p>"Ajudando o próximo como Jesus nos ensinou"</p>
+    <div class="music-player">
+        <h3>Música de Fundo</h3>
+        <audio id="audioPlayer" controls autoplay loop>
+            <source src="musica.mp3" type="audio/mpeg">
+            Seu navegador não suporta áudio.
+        </audio>
+    </div>
+</header>
 
-        <section id="Deus E A Resposta! Ligue pro 188 caso precise de ajuda psicologica contra o suicidio.">
-            <h2>Contato</h2>
-            <p>ministeriodedoacao@gmail.com
-</section>
-    </main>
+<main>
+    <section id="sobre">
+        <h2>Sobre o Ministério</h2>
+        <p>O Ministério Doação De Miguel Esperança é uma iniciativa cristã dedicada a ajudar famílias, 
+           crianças e comunidades em necessidade através de ações sociais, arrecadações e apoio espiritual.</p>
+        
+        <h3>Seguintes sites de doações:</h3>
+        <ul id="listaCaridades">
+            <li><a href="https://fundacaoaya.com" target="_blank">Fundação Aya</a></li>
+            <li><a href="https://portasabertas.org.br/" target="_blank">Portas Abertas</a></li>
+            <li><a href="https://amide.org.br/" target="_blank">AMIDE</a></li>
+            <li><a href="https://www.petlife.com.br/para-empresas" target="_blank">Pet Life</a></li>
+            <li><a href="https://www.petcoletivo.com.br/" target="_blank">Pet Coletivo</a></li>
+            <li><a href="https://www.adotepetz.com.br/" target="_blank">Adote Petz</a></li>
+            <li><a href="https://vetex.vet.br/projeto-pet-doador/" target="_blank">Projeto Pet Doador</a></li>
+        </ul>
+    </section>
 
-    <footer>
-        <p>&copy; 2025 Ministério São Miguel e Esperança. Todos os direitos reservados.</p>
-    </footer>
+    <!-- Formulário para adicionar novas caridades -->
+    <form id="formCaridade">
+        <h3>Cadastrar Nova Caridade</h3>
+        <input type="text" id="nomeCaridade" placeholder="Nome da Caridade" required>
+        <input type="url" id="linkCaridade" placeholder="Link da Caridade (https://...)" required>
+        <button type="submit">Adicionar</button>
+    </form>
 
-    <script>
-        const form = document.getElementById('formCaridade');
-        const lista = document.getElementById('listaCaridades');
+    <section id="contato">
+        <h2>Contato</h2>
+        <p>Email: ministeriodedoacao@gmail.com</p>
+        <p>Deus é a resposta! Ligue 188 caso precise de ajuda psicológica contra o suicídio.</p>
+    </section>
+</main>
 
-        // Carrega as caridades do localStorage ao iniciar
-        window.onload = function() {
-            const caridadesSalvas = JSON.parse(localStorage.getItem('caridades')) || [];
-            caridadesSalvas.forEach(caridade => {
-                adicionarCaridadeNaLista(caridade.nome, caridade.descricao);
-            });
-        };
+<footer>
+    <p>&copy; 2025 Ministério São Miguel e Esperança. Todos os direitos reservados.</p>
+</footer>
 
-        // Evento ao enviar o formulário
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
+<script>
+    const form = document.getElementById('formCaridade');
+    const lista = document.getElementById('listaCaridades');
 
-            const nome = document.getElementById('nomeCaridade').value;
-            const descricao = document.getElementById('descricaoCaridade').value;
+    // Carrega as caridades salvas
+    window.onload = function () {
+        const caridadesSalvas = JSON.parse(localStorage.getItem('caridades')) || [];
+        caridadesSalvas.forEach(c => adicionarCaridadeNaLista(c.nome, c.link));
+    };
 
-            adicionarCaridadeNaLista(nome, descricao);
-            salvarCaridade(nome, descricao);
+    // Evento ao enviar formulário
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
 
-            form.reset();
-        });
+        const nome = document.getElementById('nomeCaridade').value;
+        const link = document.getElementById('linkCaridade').value;
 
-        // Função para adicionar no HTML
-        function adicionarCaridadeNaLista(nome, descricao) {
-            const li = document.createElement('li');
-            li.innerHTML = `<strong>${nome}</strong> - ${descricao}`;
-            lista.appendChild(li);
-        }
+        adicionarCaridadeNaLista(nome, link);
+        salvarCaridade(nome, link);
 
-        // Função para salvar no localStorage
-        function salvarCaridade(nome, descricao) {
-            const caridadesSalvas = JSON.parse(localStorage.getItem('caridades')) || [];
-            caridadesSalvas.push({ nome, descricao });
-            localStorage.setItem('caridades', JSON.stringify(caridadesSalvas));
-        }
-    </script>
+        form.reset();
+    });
+
+    // Adiciona caridade na lista
+    function adicionarCaridadeNaLista(nome, link) {
+        const li = document.createElement('li');
+        li.innerHTML = `<a href="${link}" target="_blank">${nome}</a>`;
+        lista.appendChild(li);
+    }
+
+    // Salva no localStorage
+    function salvarCaridade(nome, link) {
+        const caridadesSalvas = JSON.parse(localStorage.getItem('caridades')) || [];
+        caridadesSalvas.push({ nome, link });
+        localStorage.setItem('caridades', JSON.stringify(caridadesSalvas));
+    }
+</script>
 
 </body>
 </html>
-
-
-
-
